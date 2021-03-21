@@ -1,0 +1,20 @@
+body{
+	background: url(images/back.jpg);
+	color: white;
+}
+.name{
+	font-weight: bold;
+	font-style: italic;
+	color:yellow;
+}
+.left{
+	float: left;
+	margin: 10px;
+}
+.right{
+	float: right;
+	margin: 10px;
+}
+.block{
+	overflow: auto;
+}
