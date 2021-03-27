@@ -6,8 +6,11 @@ document.addEventListener('DOMContentLoaded', () =>{
 	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
 		let data = getData()
-		let text = generate(data)
-		showMessage(n)
+		while (n != 0){
+			let text = generate(getData())
+			cont.innerHTML += `<div> ${text} </br> <input type="number"> <button id="answbtn">Ответить</button> </div>`
+			n--
+		}
 	})
 })
 function generate(data) {
@@ -30,13 +33,5 @@ function getData() {
 		w: w,
 		h: h,
 		k: k
-	}
-}
-
-function showMessage(k) {
-	let text = generate(getData())
-	cont.innerHTML += `<div> ${text} </br> <input type="number"> <button id="answbtn">Ответить</button> </div>`
-	if (k != 1){
-		showMessage(--k)
 	}
 }
