@@ -11,6 +11,10 @@ function isParity (x) {
 	}
 }
 
+function toEx(x){
+	return x / 2
+}
+
 function Duplicate(x) {
 	if(x % 2 === 0){
 		return 2 * x
@@ -18,3 +22,4 @@ function Duplicate(x) {
 		return 2 * x + 1
 	}	
 }
+

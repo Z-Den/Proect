@@ -14,39 +14,28 @@ document.addEventListener('DOMContentLoaded', () =>{
 			let data1 = getData1(s,l)
 			let data2 = getData2(l,xy)
 			let text = generate(data1,data2)
-			let par = isParity(xy)
-			let dub = Duplicate(xy)
 			c++
-			cont.innerHTML += `<div> №${c}. ${text} </br> <input type="number"> <button id="answbtn">Ответить</button> </div>`
+			cont.innerHTML += `<div> №${c}. ${text} </br> <div id="answer"> <input type="number"> 
+			<button id="answbtn">Ответить</button></div> </div>`
 			n--
 		}
+		let answer = document.getElementById('answbtn')
+		let answers = document.getElementById('answer')
+
+		answer.addEventListener('click',()=>{
+			if(s == 4 && (l != 4 || l != 1)){
+
+			}
+		// answers.innerHTML = "Неправильно, попробуй еще раз"		
+		})
+		kolz.style.display = "none"
 	})
 })
 function generate(data1,data2) {
 	return `На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом. 
 	<p> 1) Строится двоичная запись числа N. </br>
 	${data1}</p> <p>${data2}</p>`
-	// return `Фотокамера делает снимки каждые ${data.t} секунд(-ы), cодержащие ${data.k} оттенков. 
-	// Размер составляет ${data.w} * ${data.h} пикселей. 
-	// Все полученные изображения и коды пикселей внутри одного изображения записываются подряд, никакая дополнительная информация не сохраняется, данные не сжимаются.
-	// Сколько Мбайтов нужно выделить для хранения всех изображений, полученных за сутки?`
 }
-
-// function getData() {
-// 	let pwp = Math.floor((Math.random() * 10) % (9 - 5) + 6)
-// 	let pww = Math.floor((Math.random() * 10) % (10 - 6) + 5)
-// 	let pwh = Math.floor((Math.random() * 10) % (10 - 6) + 5)
-// 	let k = Math.pow(2,pwp)
-// 	let t = Math.floor((Math.random() * 10) % (9 - 3) + 3)
-// 	let w = Math.pow(2,pww) + k
-// 	let h = Math.pow(2,pwh) + Math.pow(2,t)
-// 	return {
-// 		t: t,
-// 		w: w,
-// 		h: h,
-// 		k: k
-// 	}
-// }
 
 function getData1(s,l) {
 	if (s == 4){
