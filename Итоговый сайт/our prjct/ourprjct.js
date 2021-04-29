@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', () =>{
 			let data2 = getData2(l,xy)
 			let text = generate(data1,data2)
 			c++
-			cont.innerHTML += `<div> №${c}. ${text} </br> <div id="answer"> <input type="number"> 
-			<button id="answbtn">Ответить</button></div> </div>`
+			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <div id="answer"> <input type="number"> </span>
+			</div></div>`
 			n--
 		}
+		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Ответить</button>`
 		let answer = document.getElementById('answbtn')
 		let answers = document.getElementById('answer')
 
