@@ -15,30 +15,14 @@ document.addEventListener('DOMContentLoaded', () =>{
 			let data2 = getData2(l,xy)
 			let text = generate(data1,data2)
 			c++
-<<<<<<< HEAD
-			cont.innerHTML += `<p> <div class="num">${c}</div> <div class="nun">Задание 5</div> 
-			${text} </br> <div id="answer"> <input type="number"> 
-			<button id="answbtn">Ответить</button></div> </p>`
+			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <input type="number"> </span>
+			</div>`
 			n--
 		}
+
+		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы</button>`
 		let answerbutton = document.getElementById('answbtn')
-		let answer = document.getElementById('answer')
-=======
-			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <div id="answer"> <input type="number"> </span>
-			</div></div>`
-			n--
-		}
-		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Ответить</button>`
-		let answer = document.getElementById('answbtn')
-		let answers = document.getElementById('answer')
->>>>>>> 469f8759dd8b30b3bca2421611ab7ab7937ca93d
 
-		answerbutton.addEventListener('click',()=>{
-			if(s == 4 && (l != 4 || l != 1)){
-
-			}
-			answer.innerHTML = "Неправильно, попробуй еще раз"		
-		})
 		kolz.style.display = "none"
 	})
 })
