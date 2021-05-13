@@ -18,17 +18,18 @@ document.addEventListener('DOMContentLoaded', () =>{
 			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <div id="answer"> <input type="number"> </span>
 			</div></div>`
 			n--
+
 		}
 		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Ответить</button>`
 		let answer = document.getElementById('answbtn')
 		let answers = document.getElementById('answer')
 
-		answer.addEventListener('click',()=>{
-			if(s == 4 && (l != 4 || l != 1)){
+		// answer.addEventListener('click',()=>{
+		// 	if(s == 4 && (l != 4 || l != 1)){
 
-			}
-		// answers.innerHTML = "Неправильно, попробуй еще раз"		
-		})
+		// 	}
+		// // answers.innerHTML = "Неправильно, попробуй еще раз"		
+		// })
 		kolz.style.display = "none"
 	})
 })
@@ -39,7 +40,7 @@ function generate(data1,data2) {
 }
 
 function getData1(s,l) {
-	if (s == 4){
+	if (s == 3){
 		if (l == 4 || l ==1){
 			return `
 			2) К этой записи дописывается (дублируется) последняя цифра.</br>
@@ -56,12 +57,13 @@ function getData1(s,l) {
 			единиц в двоичной записи полученного числа стало чётным.`
 		}
 	}
-	if (s == 3){
+	if (s == 2){
 		if (l == 2 || l == 4){
 			return `2) К этой записи дописывается справа бит чётности: 0, если в 
 			двоичном коде числа N было чётное число единиц, и 1, если нечётное.</br>
-			3) К полученному результату дописывается ещё один бит чётности.`	
+			3) К полученному результату дописывается ещё один бит чётности.`
 		}
+
 		if(l == 1){
 			return `2) К этой записи дописывается (дублируется) последняя цифра.</br> 
 			3) Затем справа дописывается бит чётности: 0, если в двоичном коде полученного
@@ -73,7 +75,7 @@ function getData1(s,l) {
 			3) К этой записи дописывается (дублируется) последняя цифра.`
 		}
 	}
-	if (s == 2){
+	if (s == 1){
 		if (l == 1 || l == 3){
 			return `2) К этой записи дописываются справа ещё два разряда по следующему правилу: 
 			если N чётное, в конец числа (справа) дописываются два нуля, в противном случае справа дописываются две единицы. 
@@ -120,6 +122,6 @@ function getLast() {
 }
 
 function getPunkts() {
-	let s = Math.floor((Math.random() * 10) % (4 - 1) + 2)
+	let s = Math.floor((Math.random() * 10) % (4 - 1) + 1)
 	return s	
 }
