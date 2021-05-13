@@ -15,26 +15,29 @@ document.addEventListener('DOMContentLoaded', () =>{
 			let data2 = getData2(l,xy)
 			let text = generate(data1,data2)
 			c++
-			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <div id="answer"> <input type="number"> </span>
-			</div></div>`
+			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <input type="number"> </span>
+			</div>`
 			n--
 
 		}
-		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Ответить</button>`
-		let answer = document.getElementById('answbtn')
-		let answers = document.getElementById('answer')
 
+<<<<<<< HEAD
 		// answer.addEventListener('click',()=>{
 		// 	if(s == 4 && (l != 4 || l != 1)){
 
 		// 	}
 		// // answers.innerHTML = "Неправильно, попробуй еще раз"		
 		// })
+=======
+		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы</button>`
+		let answerbutton = document.getElementById('answbtn')
+
+>>>>>>> 59cf26366bf40a673fbae32257731da81de2c5d0
 		kolz.style.display = "none"
 	})
 })
 function generate(data1,data2) {
-	return `На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом. 
+	return `<p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p> 
 	<p> 1) Строится двоичная запись числа N. </br>
 	${data1}</p> <p>${data2}</p>`
 }
@@ -88,7 +91,6 @@ function getData1(s,l) {
 }
 
 function getData2(l,xy) {
-	// console.log(l)
 	if (l == 4){
 		return `Укажите максимальное число R, меньшее ${xy.x}, которое может быть получено 
 		в результате работы этого алгоритма. В ответе это число запишите в десятичной системе.`
