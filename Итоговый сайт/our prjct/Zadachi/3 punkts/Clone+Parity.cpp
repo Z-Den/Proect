@@ -1,0 +1,60 @@
+#include <iostream>
+
+using namespace std;
+
+int count_digits(int r){
+    int c = 0;
+    while(r){
+        int y = r % 2;
+        if(y % 2 == 1){
+            c++;
+        }
+        r /= 2;
+    }
+    return c;
+}
+
+int toN (int R, int s){
+    int n = R;
+    while (s){
+        n /= 2;
+        s--;
+    }
+    return n;
+}
+
+int toRByClone(int N){
+    int r = N;
+    if(r % 2 == 0){
+        return r * 2;
+    }else{
+        return r * 2 + 1;
+    }
+}
+
+int toRByParityBit (int N){
+    int r = N;
+    if(count_digits(r) % 2 == 1){
+        r = r * 2 + 1;
+    }else{
+        r *= 2;
+    }
+    return r;
+}
+
+int main()
+{
+    int R, Ro, N, s = 2;
+    cin >> R;
+    Ro = R;
+    N = toN(R,s);
+    R = toRByClone(N);
+    R = toRByParityBit(R);
+    while(R <= Ro){//переменная часть
+        N++;
+        R = toRByClone(N);
+        R = toRByParityBit(R);
+    }
+    cout << R;
+    return 0;
+}
