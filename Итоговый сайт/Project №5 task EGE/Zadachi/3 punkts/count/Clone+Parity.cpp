@@ -44,17 +44,19 @@ int toRByParityBit (int N){
 
 int main()
 {
-    int R, Ro, N, s = 2;
-    cin >> R;
-    Ro = R;
-    N = toN(R,s);
-    R = toRByParityBit(N);
-    R = toRByClone(R);
-    while(R <= Ro){//переменная часть
+    int R, N, s = 2, x, y, c = 0;
+    cin >> x >> y;
+    N = toN(x, s);
+    R = toR(N, s);
+    while (R < x) {
         N++;
-        R = toRByParityBit(N);
-        R = toRByClone(R);
+        R = toR(N, s);
     }
-    cout << R;
+    while (R >= x && R <= y) {
+        c++;
+        N++;
+        R = toR(N, s);
+    }
+    cout << c;
     return 0;
 }

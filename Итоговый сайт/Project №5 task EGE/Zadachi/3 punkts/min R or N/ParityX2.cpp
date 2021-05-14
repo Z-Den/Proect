@@ -38,15 +38,14 @@ int toR (int N, int s){
 
 int main()
 {
-    int R, Ro, N, s;
-    cin >> R >> s;
-    Ro = R;
-    N = toN(R,s);
+    int R, N, s = 2, x, y;
+    cin >> x >> y;
+    N = toN(x,s);
     R = toR(N,s);
-    while(R <= Ro){
+    while(R <= x){
         N++;
         R = toR(N,s);
     }
-    cout << R;
+    cout << R; // or cout << N;
     return 0;
 }

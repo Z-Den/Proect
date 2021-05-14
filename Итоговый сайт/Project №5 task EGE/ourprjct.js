@@ -6,51 +6,59 @@ document.addEventListener('DOMContentLoaded', () =>{
 	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
 		let c = 0
-		cont.innerHTML = ''
-		while (n != 0){
-			let s = getPunkts()
-			let l = getLast()
-			let xy = getXY()
-			let data1 = getData1(s,l)
-			let data2 = getData2(l,xy)
-			let text = generate(data1,data2)
-			c++
-			cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <input type="number"> </span>
-			</div>`
-			n--
+		if(n <= 0){
+			cont.innerHTML = `<p><div class = "error"> Пожалуйста, введите корректное количество задач </div></p>`
+		}else{
+			cont.innerHTML = ''
+			while (n != 0){
+				let s = pickPunkts()
+				let l = pickConditonNumber()
+				let xy = getXY()
+				let random = getRandomItem()
+				let task = getTask(s,random)
+				let condition = getConditon(l,xy)
+				let text = generate(task,condition)
+				c++
+				cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <input type="number"> </span>
+				</div>`
+				n--
 
+			}
+
+			// answer.addEventListener('click',()=>{
+			// 	if(s == 4 && (l != 4 || l != 1)){
+
+			// 	}
+			// // answers.innerHTML = "Неправильно, попробуй еще раз"		
+			// })
+
+			cont.innerHTML += 
+			`<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы
+				<!--<i class="material-icons-outlined">check_circle</i>-->
+			</button>`
+			let answerbutton = document.getElementById('answbtn')
+
+
+			kolz.style.display = "none"
 		}
-
-		// answer.addEventListener('click',()=>{
-		// 	if(s == 4 && (l != 4 || l != 1)){
-
-		// 	}
-		// // answers.innerHTML = "Неправильно, попробуй еще раз"		
-		// })
-
-		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы</button>`
-		let answerbutton = document.getElementById('answbtn')
-
-
-		kolz.style.display = "none"
 	})
 })
-function generate(data1,data2) {
+function generate(task,condition) {
 	return `<p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p> 
 	<p> 1) Строится двоичная запись числа N. </br>
-	${data1}</p> <p>${data2}</p>`
+	${task}</p> <p>${condition}</p>`
 }
 
-function getData1(s,l) {
+function getTask(s,random) {
 	if (s == 3){
-		if (l == 4 || l ==1){
+		if (random == 1 || random == 4){
 			return `
 			2) К этой записи дописывается (дублируется) последняя цифра.</br>
 			3) Затем справа дописывается бит чётности: 0, если в двоичном коде полученного числа
 			 чётное число единиц, и 1, если нечётное.</br>
 			4) К полученному результату дописывается ещё один бит чётности`
 		}
-		else{
+		if (random == 2 || random == 3){
 			return `2)Складываются все цифры двоичной записи числа. Если сумма четная, то в конец
 			 числа (справа) дописывается 1, а если нечетная, то дописывается 0. Например, запись
 			  числа 10 преобразуется в запись 100;</br>
@@ -60,17 +68,18 @@ function getData1(s,l) {
 		}
 	}
 	if (s == 2){
-		if (l == 2 || l == 4){
+		if (random == 2 || random == 4){
 			return `2) К этой записи дописывается справа бит чётности: 0, если в 
 			двоичном коде числа N было чётное число единиц, и 1, если нечётное.</br>
 			3) К полученному результату дописывается ещё один бит чётности.`
 		}
 
-		if(l == 1){
+		if (random == 1){
 			return `2) К этой записи дописывается (дублируется) последняя цифра.</br> 
 			3) Затем справа дописывается бит чётности: 0, если в двоичном коде полученного
 			 числа чётное число единиц, и 1, если нечётное.`
-		}else{
+		}
+		if (random == 3){
 			return `2) Складываются все цифры двоичной записи числа.
 			 Если сумма четная, то в конец числа (справа) дописывается 1, а если нечетная, 
 			 то дописывается 0. Например, запись числа 10 преобразуется в запись 100;</br>
@@ -78,18 +87,18 @@ function getData1(s,l) {
 		}
 	}
 	if (s == 1){
-		if (l == 1 || l == 3){
+		if (random == 1 || random == 3){
 			return `2) К этой записи дописываются справа ещё два разряда по следующему правилу: 
 			если N чётное, в конец числа (справа) дописываются два нуля, в противном случае справа дописываются две единицы. 
 			Например, двоичная запись 1001 числа 9 будет преобразована в 100111.`
 		}
-		else{
+		if (random == 2 || random == 4){
 			return `2) Затем справа дописываются два разряда: символы 01, если число N чётное, и 10, если нечётное.`
 		}
 	}
 }
 
-function getData2(l,xy) {
+function getConditon(l,xy) {
 	if (l == 4){
 		return `Укажите максимальное число R, меньшее ${xy.x}, которое может быть получено 
 		в результате работы этого алгоритма. В ответе это число запишите в десятичной системе.`
@@ -117,12 +126,16 @@ function getXY() {
 	}
 }
 
-function getLast() {
+function pickConditonNumber() {
 	let l = Math.floor((Math.random() * 10) % (5 - 1) + 1)
 	return l
 }
 
-function getPunkts() {
+function pickPunkts() {
 	let s = Math.floor((Math.random() * 10) % (4 - 1) + 1)
 	return s	
+}
+function getRandomItem() {
+	let rand = Math.floor((Math.random() * 10) % (5 - 1) + 1)
+	return rand
 }
