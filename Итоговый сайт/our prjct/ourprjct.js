@@ -21,18 +21,17 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 		}
 
-<<<<<<< HEAD
 		// answer.addEventListener('click',()=>{
 		// 	if(s == 4 && (l != 4 || l != 1)){
 
 		// 	}
 		// // answers.innerHTML = "Неправильно, попробуй еще раз"		
 		// })
-=======
+
 		cont.innerHTML += `<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы</button>`
 		let answerbutton = document.getElementById('answbtn')
 
->>>>>>> 59cf26366bf40a673fbae32257731da81de2c5d0
+
 		kolz.style.display = "none"
 	})
 })
