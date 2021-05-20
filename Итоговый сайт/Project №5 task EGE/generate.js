@@ -25,13 +25,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 			}
 
-			// answer.addEventListener('click',()=>{
-			// 	if(s == 4 && (l != 4 || l != 1)){
-
-			// 	}
-			// // answers.innerHTML = "Неправильно, попробуй еще раз"		
-			// })
-
 			cont.innerHTML += 
 			`<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы
 				<!--<i class="material-icons-outlined">check_circle</i>-->
