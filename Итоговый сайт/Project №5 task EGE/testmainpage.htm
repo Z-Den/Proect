@@ -5,41 +5,50 @@
 		<script type="text/javascript" src="generate.js" src="functions.js" src="./materialize.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/materialize.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<style type="text/css">
-			body{
-				background-color:  #64b5f6;
-			}
-			.error{
-				border: 1px dashed blue;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
 		<!-- https://fonts.google.com/icons -->
 		<!-- https://materializecss.com/color.html -->
 	</head>
 	<script type="text/javascript" src="generate.js" src="functions.js"></script>
-	<style type="text/css">
-		.num{
-			border: 0.5px solid black;
-			display: inline;
-			padding-left: 15px;
-			padding-right: 15px;
-		}
-		.nun{
-			display: inline;
-			font-weight: bold;
-		}
-	</style>
 	<body>
 		<div class="container">
-			<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <input type="number"> </span>
+			<div class="row">
+				<div id="example" class="col s6">
+					<h3>Пример задачи</h3>
+					<div class="example__task">
+						<p>
+							На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.
+						</p> 
+						<p> 1) Строится двоичная запись числа N. </br>
+							2) К этой записи дописывается (дублируется) последняя цифра.</br>
+							3) Затем справа дописывается бит чётности: 0, если в двоичном коде полученного числа
+							 чётное число единиц, и 1, если нечётное.</br>
+							4) К полученному результату дописывается ещё один бит чётности.
+						</p>
+						<p>	
+							Укажите максимальное число R, меньшее 115, которое может быть получено 
+							в результате работы этого алгоритма. В ответе это число запишите в десятичной системе.
+						</p>
+					</div>
+				</div>
+				<div id="kolz" class="col s6">
+					<h2>Введите количество задач:</h2><input type="number" name="kolz" id="n">
+					<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="qstbtn">
+						Сформировать <i class="material-icons right">touch_app</i>
+	  				</button>
+				</div>
 			</div>
-			<!-- <div id="kolz">
-				<h2>Введите количество задач:<input type="number" name="kolz" id="n"></h2>
-				<button class="btn waves-effect waves-light" type="submit" name="action" id="qstbtn">Сформировать
-    				<i class="material-icons right">touch_appsend</i>
-  				</button>
-			</div> -->
-			<div id="cont"></div>
+			<div id="cont">
+				<div id="error_popup" class="popup">
+					<div class="popup__body">
+						<div class="popup__content">
+							<a href="" class="popup__close">X</a>
+							<div class="popup__title">Ошибка</div>
+							<div class="popup__text">Пожалуйста, введите корректное количество задач</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

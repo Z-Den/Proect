@@ -2,12 +2,14 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 	let quest = document.getElementById('qstbtn')
 	let cont = document.getElementById('cont')
+	// let error = document.getElementById('error_popup')
+
 
 	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
 		let c = 0
 		if(n <= 0){
-			cont.innerHTML = `<p><div class = "error"> Пожалуйста, введите корректное количество задач </div></p>`
+			error.style.display = "inline"
 		}else{
 			cont.innerHTML = ''
 			while (n != 0){
@@ -19,20 +21,21 @@ document.addEventListener('DOMContentLoaded', () =>{
 				let condition = getConditon(l,xy)
 				let text = generate(task,condition)
 				c++
-				cont.innerHTML += `<div class="card-panel"> <span class="blue-text text-darken-2">№${c}. ${text} </br> <input type="number"> </span>
-				</div>`
+				cont.innerHTML +=
+				`<div class = "row">
+					<div class "col">
+						<div class="card-panel">
+							<span class="blue-text text-darken-2">
+								№${c}. ${text} </br> Ответ: _______
+							</span>
+						</div>
+					</div>
+				<div>`
 				n--
-
 			}
 
-			cont.innerHTML += 
-			`<button class="btn waves-effect waves-light" type="submit" name="action" id="answbtn">Проверить ответы
-				<!--<i class="material-icons-outlined">check_circle</i>-->
-			</button>`
-			let answerbutton = document.getElementById('answbtn')
-
-
 			kolz.style.display = "none"
+			example.style.display = "none"
 		}
 	})
 })
@@ -49,7 +52,7 @@ function getTask(s,random) {
 			2) К этой записи дописывается (дублируется) последняя цифра.</br>
 			3) Затем справа дописывается бит чётности: 0, если в двоичном коде полученного числа
 			 чётное число единиц, и 1, если нечётное.</br>
-			4) К полученному результату дописывается ещё один бит чётности`
+			4) К полученному результату дописывается ещё один бит чётности.`
 		}
 		if (random == 2 || random == 3){
 			return `2)Складываются все цифры двоичной записи числа. Если сумма четная, то в конец
@@ -96,9 +99,13 @@ function getConditon(l,xy) {
 		return `Укажите максимальное число R, меньшее ${xy.x}, которое может быть получено 
 		в результате работы этого алгоритма. В ответе это число запишите в десятичной системе.`
 	}
-	if (l == 3){
+	if (l == 3 && xy.y > xy.x){
 		return `Укажите количество чисел R, которые могут быть 
 		получены в результате работы этого алгоритма, и лежат в диапазоне ${xy.x} ≤ R ≤ ${xy.y}.`
+	}
+	if (l == 3 && xy.x > xy.y){
+		return `Укажите количество чисел R, которые могут быть 
+		получены в результате работы этого алгоритма, и лежат в диапазоне ${xy.y} ≤ R ≤ ${xy.x}.`
 	}
 	if (l == 2){
 		return `Укажите минимальное число N, после обработки которого 
@@ -111,8 +118,8 @@ function getConditon(l,xy) {
 }
 
 function getXY() {
-	let x = Math.floor((Math.random() * 1000) % (255 - 175) + 85)
-	let y = Math.floor((Math.random() * 1000) % (255 - 175) + 85) + 50
+	let x = Math.floor((Math.random() * 1000) % (165 - 85) + 85)
+	let y = Math.floor((Math.random() * 1000) % (165 - 120) + 120)
 	return{
 		y: y,
 		x: x
