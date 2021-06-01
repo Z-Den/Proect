@@ -1,4 +1,4 @@
-function toN(R, s){
+function toN(R, s) {
 	let n = R
 	while(s){
 		n /= 2
