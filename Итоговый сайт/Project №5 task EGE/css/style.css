@@ -2,9 +2,7 @@ body{
 	background-color:  #64b5f6;
 }
 .example__task{
-	border: double 1px white;
-	background-color: #bbdefb;
-	padding: 5px;
+	padding: 10px;
 }
 #error_popup{
 	display: none;
@@ -31,13 +29,14 @@ body{
 	max-width: 800px;
 	padding: 30px;
 	position: relative;
+	font-size: 25px;
 }
 .popup__close{
 	position: absolute;
 	right: 10px;
 	top: 10px;
 	font-size: 20px;
-	color: #000;
+	color: red;
 	text-decoration: none;
 }
 .popup__title{

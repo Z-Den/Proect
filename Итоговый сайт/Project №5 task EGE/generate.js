@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 		let n = document.getElementById('n').value
 		let c = 0
 		if(n <= 0){
-			error.style.display = "inline"
+			error_popup.style.display = "inline"
 		}else{
 			cont.innerHTML = ''
 			while (n != 0){
