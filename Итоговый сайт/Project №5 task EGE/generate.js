@@ -2,8 +2,24 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 	let quest = document.getElementById('qstbtn')
 	let cont = document.getElementById('cont')
+	let hintbn = document.getElementById('hintbtn')
 	// let error = document.getElementById('error_popup')
+	let isOpen = false
+	
+	hintbn.addEventListener('click', function() {
+		let hint = document.getElementById('hint')
+		
+		isOpen = !isOpen
 
+		if(isOpen){
+			hint.style.display = 'block'
+			hintbn.innerHTML = "Скрыть ответ"
+		}
+		else{
+			hint.style.display = 'none'
+			hintbn.innerHTML = "Посмотреть ответ"
+		}
+	})
 
 	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
