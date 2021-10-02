@@ -46,3 +46,9 @@ body{
 .popup__text{
 	
 }
+.answer{
+	display: none;
+}
+.shown{
+	display: inline;
+}

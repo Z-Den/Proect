@@ -3,15 +3,12 @@ document.addEventListener('DOMContentLoaded', () =>{
 	let quest = document.getElementById('qstbtn')
 	let cont = document.getElementById('cont')
 	let hintbn = document.getElementById('hintbtn')
-	// let error = document.getElementById('error_popup')
 	let isOpen = false
 	
 	hintbn.addEventListener('click', function() {
 		let hint = document.getElementById('hint')
-		
-		isOpen = !isOpen
 
-		if(isOpen){
+		if(!isOpen){
 			hint.style.display = 'block'
 			hintbn.innerHTML = "Скрыть ответ"
 		}
@@ -19,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 			hint.style.display = 'none'
 			hintbn.innerHTML = "Посмотреть ответ"
 		}
+
+		isOpen = !isOpen
 	})
 
 	quest.addEventListener('click',()=>{
@@ -28,13 +27,19 @@ document.addEventListener('DOMContentLoaded', () =>{
 			error_popup.style.display = "inline"
 		}else{
 			cont.innerHTML = ''
+			cont.innerHTML += 
+			`<div id = "addbtn">
+				<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="hintbtn">
+					Ввести ещё раз
+				</button>
+			</div>`
 			while (n != 0){
 				let s = pickPunkts()
 				let l = pickConditonNumber()
-				let xy = getXY()
+				let x = getX()
 				let random = getRandomItem()
 				let task = getTask(s,random)
-				let condition = getConditon(l,xy)
+				let condition = getConditon(l,x)
 				let text = generate(task,condition)
 				c++
 				cont.innerHTML +=
@@ -42,18 +47,56 @@ document.addEventListener('DOMContentLoaded', () =>{
 					<div class "col">
 						<div class="card-panel">
 							<span class="blue-text text-darken-2">
-								№${c}. ${text} </br> Ответ: _______
+								№${c}. ${text} </br> Ответ: <div class="answer">${x+10}</div>
 							</span>
 						</div>
 					</div>
 				<div>`
 				n--
 			}
+			cont.innerHTML += 
+			`<div id = "answbtn">
+				<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="hintbtn">
+					Посмтотреть все ответы
+				</button>
+			</div>`
+
+			IsOpen = false
+			let answbtn = document.getElementById("answbtn")
+			let addbtn = document.getElementById("addbtn")
+
+			answbtn.addEventListener('click',()=>{
+
+				let ele = document.getElementsByClassName('answer')
+
+				if(isOpen){
+					for (let i = 0; i < ele.length; i++ ) {
+    					ele[i].style.display = "none";
+					}
+
+					answbtn.innerHTML = "Скрыть ответ"
+				}
+				else{
+					for (let i = 0; i < ele.length; i++ ) {
+    					ele[i].style.display = "inline";
+					}
+					answbtn.innerHTML = "Посмотреть ответ"
+				}
+
+				IsOpen = !IsOpen
+			})
+
+			addbtn.addEventListener('click',()=>{
+				cont.innerHTML = ''
+				kolz.style.display = "block"
+				example.style.display = "block"
+			})
 
 			kolz.style.display = "none"
 			example.style.display = "none"
 		}
 	})
+
 })
 function generate(task,condition) {
 	return `<p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p> 
@@ -110,40 +153,28 @@ function getTask(s,random) {
 	}
 }
 
-function getConditon(l,xy) {
-	if (l == 4){
-		return `Укажите максимальное число R, меньшее ${xy.x}, которое может быть получено 
+function getConditon(l,x) {
+	if (l == 3){
+		return `Укажите максимальное число R, меньшее ${x}, которое может быть получено 
 		в результате работы этого алгоритма. В ответе это число запишите в десятичной системе.`
-	}
-	if (l == 3 && xy.y > xy.x){
-		return `Укажите количество чисел R, которые могут быть 
-		получены в результате работы этого алгоритма, и лежат в диапазоне ${xy.x} ≤ R ≤ ${xy.y}.`
-	}
-	if (l == 3 && xy.x > xy.y){
-		return `Укажите количество чисел R, которые могут быть 
-		получены в результате работы этого алгоритма, и лежат в диапазоне ${xy.y} ≤ R ≤ ${xy.x}.`
 	}
 	if (l == 2){
 		return `Укажите минимальное число N, после обработки которого 
-		автомат получает число, большее ${xy.x}. В ответе это число запишите в десятичной системе.`
+		автомат получает число, большее ${x}. В ответе это число запишите в десятичной системе.`
 	}
 	if (l == 1){
-		return `Укажите минимальное число R, большее ${xy.x}, которое 
+		return `Укажите минимальное число R, большее ${x}, которое 
 		может быть получено в результате работы этого алгоритма. В ответе это число запишите в десятичной системе.`
 	}
 }
 
-function getXY() {
-	let x = Math.floor((Math.random() * 1000) % (165 - 85) + 85)
-	let y = Math.floor((Math.random() * 1000) % (165 - 120) + 120)
-	return{
-		y: y,
-		x: x
-	}
+function getX() {
+	let x = Math.floor((Math.random() * 1000) % (165 - 85) + 85)//x [165;85] 60 in total
+	return x
 }
 
 function pickConditonNumber() {
-	let l = Math.floor((Math.random() * 10) % (5 - 1) + 1)
+	let l = Math.floor((Math.random() * 10) % (4 - 1) + 1)
 	return l
 }
 
