@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     				ele[i].style.display = "inline";
 				}
 				answbtn.innerHTML = ""
+				answbtn.innerHTML = ''
 			})
 
 			addbtn.addEventListener('click',()=>{
