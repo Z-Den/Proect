@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 				</button>
 			</div>`
 
-			IsOpen = false
 			let answbtn = document.getElementById("answbtn")
 			let addbtn = document.getElementById("addbtn")
 
@@ -69,21 +68,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 				let ele = document.getElementsByClassName('answer')
 
-				if(isOpen){
-					for (let i = 0; i < ele.length; i++ ) {
-    					ele[i].style.display = "none";
-					}
-
-					answbtn.innerHTML = "Скрыть ответ"
+				for (let i = 0; i < ele.length; i++ ) {
+    				ele[i].style.display = "inline";
 				}
-				else{
-					for (let i = 0; i < ele.length; i++ ) {
-    					ele[i].style.display = "inline";
-					}
-					answbtn.innerHTML = "Посмотреть ответ"
-				}
-
-				IsOpen = !IsOpen
+				answbtn.innerHTML = ""
 			})
 
 			addbtn.addEventListener('click',()=>{
