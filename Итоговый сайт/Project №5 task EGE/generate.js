@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 				for (let i = 0; i < ele.length; i++ ) {
     				ele[i].style.display = "inline";
 				}
+				answbtn.innerHTML = ""
 				answbtn.innerHTML = ''
 			})
 
