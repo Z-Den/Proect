@@ -57,9 +57,11 @@ document.addEventListener('DOMContentLoaded', () =>{
 			cont.innerHTML += 
 			`<div id = "answbtn">
 				<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="hintbtn">
-					Посмтотреть все ответы
+					Oтветы
 				</button>
-			</div>`
+			</div>` +
+
+			`<a href="#" title="Вернуться к началу" class="topbutton">^Наверх</a>`
 
 			let answbtn = document.getElementById("answbtn")
 			let addbtn = document.getElementById("addbtn")
@@ -73,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 				}
 				answbtn.innerHTML = ''
 			})
+
+			
 
 			addbtn.addEventListener('click',()=>{
 				cont.innerHTML = ''
