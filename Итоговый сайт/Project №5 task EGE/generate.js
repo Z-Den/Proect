@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () =>{
-
+	
 	let quest = document.getElementById('qstbtn')
 	let cont = document.getElementById('cont')
 	let hintbn = document.getElementById('hintbtn')
@@ -42,13 +42,40 @@ document.addEventListener('DOMContentLoaded', () =>{
 				let task = getTask(s,random)
 				let condition = getConditon(l,x)
 				let text = generate(task,condition)
+				let getN = {
+					1: toN(x, 1),
+					2: toN(x, 2),
+					3: toN(x, 3),
+				}
+				let N = Math.floor(getN[s])
+				// debugger
+				let interR = {
+					1: getRbyTwoLastBits(N, random),
+					2:{
+						1: getRbyDupland2or1xParity(s,N),
+						2: getRby3or2xParity(s, N),
+						3: getRbyParityandDupl(N),
+						4: getRby3or2xParity(s, N),
+					},
+					3:{
+						1: getRbyDupland2or1xParity(s,N),
+						2: getRby3or2xParity(s, N),
+						3: getRby3or2xParity(s, N),
+						4: getRbyDupland2or1xParity(s,N),
+					},
+				}
+
+				let intR = interR[s][random]
+
+				// let fAnswer = getAnswer(l,intR,N,x)
+				console.log(intR,N)
 				c++
 				cont.innerHTML +=
 				`<div class = "row">
 					<div class "col">
 						<div class="card-panel">
 							<span class="blue-text text-darken-2">
-								№${c}. ${text} </br> Ответ: <div class="answer">${x+10}</div>
+								№${c}. ${text} </br> Ответ: <div class="answer">${intR}</div>
 							</span>
 						</div>
 					</div>
@@ -62,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 				</button>
 			</div>` +
 
-			`<a href="#" title="Вернуться к началу" class="topbutton">^Наверх</a>`
+			`<a href="#" title="Вернуться к началу" class="topbutton">Наверх</a>`
 
 			let answbtn = document.getElementById("answbtn")
 			let addbtn = document.getElementById("addbtn")
@@ -90,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 			example.style.display = "none"
 		}
 	})
-
+	
 	function generate(task,condition) {
 		return `<p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p> 
 		<p> 1) Строится двоичная запись числа N. </br>
@@ -109,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 			if (random == 2 || random == 3){
 				return `2)Складываются все цифры двоичной записи числа. Если сумма четная, то в конец
 				 числа (справа) дописывается 0, а если нечетная, то дописывается 1. Например, запись
-				  числа 10 преобразуется в запись 100;</br>
+				  числа 10 преобразуется в запись 101;</br>
 				3) К полученному результату применяется еще раз пункт 2 этого алгоритма.</br>
 				4) К полученному результату дописывается ещё один бит чётности так, чтобы количество 
 				единиц в двоичной записи полученного числа стало чётным.`
