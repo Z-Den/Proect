@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 					Ввести ещё раз
 				</button>
 			</div>`
+			// debugger
 			while (n != 0){
 				let s = pickPunkts()
 				let l = pickConditonNumber()
@@ -43,14 +44,18 @@ document.addEventListener('DOMContentLoaded', () =>{
 				let condition = getConditon(l,x)
 				let text = generate(task,condition)
 				let getN = {
-					1: toN(x, 1),
+					1: toN(x, 2),
 					2: toN(x, 2),
 					3: toN(x, 3),
 				}
 				let N = Math.floor(getN[s])
-				// debugger
 				let interR = {
-					1: getRbyTwoLastBits(N, random),
+					1: {
+						1: getRbyTwoLastBits(N, random),
+						2: getRbyTwoLastBits(N, random),
+						3: getRbyTwoLastBits(N, random),
+						4: getRbyTwoLastBits(N, random),
+					},
 					2:{
 						1: getRbyDupland2or1xParity(s,N),
 						2: getRby3or2xParity(s, N),
@@ -66,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 				}
 
 				let intR = interR[s][random]
-
 				// let fAnswer = getAnswer(l,intR,N,x)
-				console.log(intR,N)
+
+
 				c++
 				cont.innerHTML +=
 				`<div class = "row">

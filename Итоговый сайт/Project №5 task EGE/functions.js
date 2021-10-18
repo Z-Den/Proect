@@ -2,7 +2,7 @@ function count_digits(n) {
 	let c = 0
 	while(n >= 1){
 		let y = n % 2
-		if(y % 2 === 1){
+		if(y >= 1){ //(y % 2 >= 1)
 			c++
 		}
 		n /= 2
@@ -12,7 +12,7 @@ function count_digits(n) {
 
 function Parity(n) {
 	let r = n
-	if(count_digits(r) % 2 == 1){
+	if(count_digits(r) % 2 >= 1){
 		return 2 * r + 1
 	}else{
 		return r * 2
@@ -20,7 +20,7 @@ function Parity(n) {
 }
 
 function Duplicate(n) {
-	if(n % 2 === 0){
+	if(n % 2 >= 0 && n % 2 < 1){
 		return 2 * n
 	}else{
 		return 2 * n + 1
@@ -28,14 +28,14 @@ function Duplicate(n) {
 }
 
 function TwoLastBits(n, rand) {
-	if(rand % 2 === 1){
-		if(n % 2 === 0){
+	if(rand % 2 >= 1){
+		if(n % 2 >= 0 && n % 2 < 1){
 			return n * 4
 		}else{
 			return n * 4 + 3
 		}
 	}else{
-		if(n % 2 === 0){
+		if(n % 2 >= 0 && n % 2 < 1){
 			return n * 4 + 1
 		}else{
 			return n * 4 + 2
@@ -45,7 +45,7 @@ function TwoLastBits(n, rand) {
 
 function getRby3or2xParity(s, n){
 	while(s){
-		if(count_digits(n) % 2 === 1){
+		if(count_digits(n) % 2 >= 1){
 			n = n * 2 + 1
 		}else{
 			n *= 2
@@ -56,8 +56,9 @@ function getRby3or2xParity(s, n){
 }
 function getRbyDupland2or1xParity(s, n){
 	n = Duplicate(n)
+	s--
 	while(s){
-		if(count_digits(n) % 2 === 1){
+		if(count_digits(n) % 2 >= 1){
 			n = n * 2 + 1
 		}else{
 			n *= 2
@@ -68,7 +69,7 @@ function getRbyDupland2or1xParity(s, n){
 }
 
 function getRbyParityandDupl(n){
-	if(count_digits(n) % 2 === 1){
+	if(count_digits(n) % 2 >= 1){
 		n = n * 2 + 1
 	}else{
 		n *= 2
@@ -92,7 +93,6 @@ function toN(R, s) {
 	}
 	return n
 }
-
 function getAnswer(l,R,N,x,s,random){
 	if(l == 3){
 		while(R >= x){
