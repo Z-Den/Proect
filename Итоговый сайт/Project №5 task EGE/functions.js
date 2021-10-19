@@ -43,46 +43,135 @@ function TwoLastBits(n, rand) {
 	}
 }
 
-function getRby3or2xParity(s, n){
-	while(s){
-		if(count_digits(n) % 2 >= 1){
-			n = n * 2 + 1
+function getRbyParity({s, N, x, l}){
+	let R = N
+	let S = s
+	
+	while(S){
+		if(count_digits(R) % 2 >= 1){
+			R = R * 2 + 1
 		}else{
-			n *= 2
+			R *= 2
 		}
-		s--
+		S--
 	}
-	return n
+	if(l == 3){
+		while(R >= x){
+			N--
+			R = getRbyParity({s, N, x, l})
+		}
+		return R
+	}
+	if(l == 2){
+		while(R <= x){
+			N++
+			R = getRbyParity({s, N, x, l})
+		}
+		return N
+	}
+	if(l == 1){
+		while(R <= x){
+			N++
+			R = getRbyParity({s, N, x, l})
+		}
+		return R
+	}
 }
-function getRbyDupland2or1xParity(s, n){
-	n = Duplicate(n)
-	s--
-	while(s){
-		if(count_digits(n) % 2 >= 1){
-			n = n * 2 + 1
+function getRbyDuplAndParity({s, N, x, l}){
+	let R = N
+	let S = s
+
+	R = Duplicate(R)
+	S--
+	
+	while(S){
+		if(count_digits(R) % 2 >= 1){
+			R = R * 2 + 1
 		}else{
-			n *= 2
+			R *= 2
 		}
-		s--
+		S--
 	}
-	return n	
+	if(l == 3){
+		while(R >= x){
+			N--
+			R = getRbyDuplAndParity({s, N, x, l})
+		}
+		return R
+	}
+	if(l == 2){
+		while(R <= x){
+			N++
+			R = getRbyDuplAndParity({s, N, x, l})
+		}
+		return N
+	}
+	if(l == 1){
+		while(R <= x){
+			N++
+			R = getRbyDuplAndParity({s, N, x, l})
+		}
+		return R
+	}
 }
 
-function getRbyParityandDupl(n){
-	if(count_digits(n) % 2 >= 1){
-		n = n * 2 + 1
+function getRbyParityandDupl({N, x, l}){
+	let R = N
+
+	if(count_digits(R) % 2 >= 1){
+		R = R * 2 + 1
 	}else{
-		n *= 2
+		R *= 2
 	}
-	n = Duplicate(n)
+	R = Duplicate(R)
 
-	return n
+	if(l == 3){
+		while(R >= x){
+			N--
+			R = getRbyParityandDupl({N, x, l})
+		}
+		return R
+	}
+	if(l == 2){
+		while(R <= x){
+			N++
+			R = getRbyParityandDupl({N, x, l})
+		}
+		return N
+	}
+	if(l == 1){
+		while(R <= x){
+			N++
+			R = getRbyParityandDupl({N, x, l})
+		}
+		return R
+	}
 }
 
-function getRbyTwoLastBits(n, rand){
-	n = TwoLastBits(n, rand)
+function getRbyTwoLastBits({N, random, x, l}){
+	let R = TwoLastBits(N, random)
 
-	return n
+	if(l == 3){
+		while(R >= x){
+			N--
+			R = getRbyTwoLastBits({N, random, x, l})
+		}
+		return R
+	}
+	if(l == 2){
+		while(R <= x){
+			N++
+			R = getRbyTwoLastBits({N, random, x, l})
+		}
+		return N
+	}
+	if(l == 1){
+		while(R <= x){
+			N++
+			R = getRbyTwoLastBits({N, random, x, l})
+		}
+		return R
+	}
 }
 
 function toN(R, s) {
@@ -92,27 +181,4 @@ function toN(R, s) {
 		s--
 	}
 	return n
-}
-function getAnswer(l,R,N,x,s,random){
-	if(l == 3){
-		while(R >= x){
-			N--
-			R = interR[s][random]
-		}
-		return R
-	}
-	if(l == 2){
-		while(R <= x){
-			N++
-			R = interR[s][random]
-		}
-		return N
-	}
-	if(l == 1){
-		while(R <= x){
-			N++
-			R = interR[s][random]
-		}
-		return R
-	}
 }

@@ -1,3 +1,11 @@
+// let o = { a: 'abd', b: 123, c: ['12', '23', '34'] }
+
+// const f = ({ c, a }) => {
+// 	console.log(a, c)
+// }
+
+// f(o)
+
 document.addEventListener('DOMContentLoaded', () =>{
 	
 	let quest = document.getElementById('qstbtn')
@@ -34,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 					Ввести ещё раз
 				</button>
 			</div>`
-			// debugger
+
 			while (n != 0){
 				let s = pickPunkts()
 				let l = pickConditonNumber()
@@ -49,30 +57,30 @@ document.addEventListener('DOMContentLoaded', () =>{
 					3: toN(x, 3),
 				}
 				let N = Math.floor(getN[s])
+				let params = { N, random, x, l, s }
 				let interR = {
 					1: {
-						1: getRbyTwoLastBits(N, random),
-						2: getRbyTwoLastBits(N, random),
-						3: getRbyTwoLastBits(N, random),
-						4: getRbyTwoLastBits(N, random),
+						1: getRbyTwoLastBits,
+						2: getRbyTwoLastBits,
+						3: getRbyTwoLastBits,
+						4: getRbyTwoLastBits,
 					},
 					2:{
-						1: getRbyDupland2or1xParity(s,N),
-						2: getRby3or2xParity(s, N),
-						3: getRbyParityandDupl(N),
-						4: getRby3or2xParity(s, N),
+						1: getRbyDuplAndParity,
+						2: getRbyParity,
+						3: getRbyParityandDupl,
+						4: getRbyParity,
 					},
 					3:{
-						1: getRbyDupland2or1xParity(s,N),
-						2: getRby3or2xParity(s, N),
-						3: getRby3or2xParity(s, N),
-						4: getRbyDupland2or1xParity(s,N),
+						1: getRbyDuplAndParity,
+						2: getRbyParity,
+						3: getRbyParity,
+						4: getRbyDuplAndParity,
 					},
 				}
 
-				let intR = interR[s][random]
-				// let fAnswer = getAnswer(l,intR,N,x)
 
+				let R = interR[s][random](params)
 
 				c++
 				cont.innerHTML +=
@@ -80,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 					<div class "col">
 						<div class="card-panel">
 							<span class="blue-text text-darken-2">
-								№${c}. ${text} </br> Ответ: <div class="answer">${intR}</div>
+								№${c}. ${text} </br> Ответ: <div class="answer">${R}</div>
 							</span>
 						</div>
 					</div>
