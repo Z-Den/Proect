@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 	let quest = document.getElementById('qstbtn')
 	let cont = document.getElementById('cont')
 	let hintbn = document.getElementById('hintbtn')
+	let error = document.getElementById('error_popup')
 	let isOpen = false
 	
 	hintbn.addEventListener('click', function() {
@@ -19,11 +20,22 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 		isOpen = !isOpen
 	})
+	document.addEventListener('keypress',()=>{
+		if(event.which || event.keyCode) {
+			if ((event.which == 13) || (event.keyCode == 13)) {
+			quest.click();
+			return false;
+			}
+		}
+		else {
+			return true;
+		}
+	})
 
 	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
 		let c = 0
-		let error = document.getElementById('error_popup')
+		// error = document.getElementById('error_popup')
 		if(n <= 0){
 			error.style.display = "inline"
 		}else{
