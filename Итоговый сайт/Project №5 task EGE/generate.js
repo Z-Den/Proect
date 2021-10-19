@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 	let hintbn = document.getElementById('hintbtn')
 	let isOpen = false
 	
-	hintbn.addEventListener('click', () => {
+	hintbn.addEventListener('click', function() {
 		let hint = document.getElementById('hint')
 
 		if(!isOpen){
@@ -20,20 +20,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 		isOpen = !isOpen
 	})
 
-	quest.addEventListener('click',toForm)
-	document.addEventListener('keypress',()=>{
-		if(event.which || event.keyCode) {
-			if ((event.which == 13) || (event.keyCode == 13)) {
-			  quest.click()
-			  return false
-			}
-		}
-		else {
-			return true
-		}
-	})
-
-	function toForm(e){
+	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
 		let c = 0
 		let error = document.getElementById('error_popup')
@@ -47,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 					Ввести ещё раз
 				</button>
 			</div>`
-			// debugger
+
 			while (n != 0){
 				let s = pickPunkts()
 				let l = pickConditonNumber()
@@ -62,54 +49,30 @@ document.addEventListener('DOMContentLoaded', () =>{
 					3: toN(x, 3),
 				}
 				let N = Math.floor(getN[s])
+				let params = { N, random, x, l, s }
 				let interR = {
 					1: {
-						1: getRbyTwoLastBits(N, random),
-						2: getRbyTwoLastBits(N, random),
-						3: getRbyTwoLastBits(N, random),
-						4: getRbyTwoLastBits(N, random),
+						1: getRbyTwoLastBits,
+						2: getRbyTwoLastBits,
+						3: getRbyTwoLastBits,
+						4: getRbyTwoLastBits,
 					},
 					2:{
-						1: getRbyDupland2or1xParity(s,N),
-						2: getRby3or2xParity(s, N),
-						3: getRbyParityandDupl(N),
-						4: getRby3or2xParity(s, N),
+						1: getRbyDuplAndParity,
+						2: getRbyParity,
+						3: getRbyParityandDupl,
+						4: getRbyParity,
 					},
 					3:{
-						1: getRbyDupland2or1xParity(s,N),
-						2: getRby3or2xParity(s, N),
-						3: getRby3or2xParity(s, N),
-						4: getRbyDupland2or1xParity(s,N),
+						1: getRbyDuplAndParity,
+						2: getRbyParity,
+						3: getRbyParity,
+						4: getRbyDuplAndParity,
 					},
 				}
 
-				let R = interR[s][random]
-				// function getAnswer(l,R,N,x,s,random){
-				// 	if(l == 3){
-				// 		while(R >= x){
-				// 			N--
-				// 			R = interR[s][random]
-				// 		}
-				// 		return R
-				// 	}
-				// 	if(l == 2){
-				// 		while(R <= x){
-				// 			N++
-				// 			R = interR[s][random]
-				// 		}
-				// 		return N
-				// 	}
-				// 	if(l == 1){
-				// 		while(R <= x){
-				// 			N++
-				// 			R = interR[s][random]
-				// 		}
-				// 		return R
-				// 	}
-				// }
-				// let fAnswer = getAnswer(l,R,N,x,s,random)
-				// console.log(fAnswer)
 
+				let R = interR[s][random](params)
 
 				c++
 				cont.innerHTML +=
@@ -158,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 			kolz.style.display = "none"
 			example.style.display = "none"
 		}
-	}
+	})
 	
 	function generate(task,condition) {
 		return `<p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p> 
