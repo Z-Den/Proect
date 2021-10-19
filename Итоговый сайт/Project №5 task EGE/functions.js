@@ -93,26 +93,3 @@ function toN(R, s) {
 	}
 	return n
 }
-function getAnswer(l,R,N,x,s,random){
-	if(l == 3){
-		while(R >= x){
-			N--
-			R = interR[s][random]
-		}
-		return R
-	}
-	if(l == 2){
-		while(R <= x){
-			N++
-			R = interR[s][random]
-		}
-		return N
-	}
-	if(l == 1){
-		while(R <= x){
-			N++
-			R = interR[s][random]
-		}
-		return R
-	}
-}

@@ -1,6 +1,9 @@
 body{
 	background-color:  #64b5f6;
 }
+#hint{
+	display: none;
+}
 .example__task{
 	padding: 10px;
 }

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 	let hintbn = document.getElementById('hintbtn')
 	let isOpen = false
 	
-	hintbn.addEventListener('click', function() {
+	hintbn.addEventListener('click', () => {
 		let hint = document.getElementById('hint')
 
 		if(!isOpen){
@@ -20,7 +20,20 @@ document.addEventListener('DOMContentLoaded', () =>{
 		isOpen = !isOpen
 	})
 
-	quest.addEventListener('click',()=>{
+	quest.addEventListener('click',toForm)
+	document.addEventListener('keypress',()=>{
+		if(event.which || event.keyCode) {
+			if ((event.which == 13) || (event.keyCode == 13)) {
+			  quest.click()
+			  return false
+			}
+		}
+		else {
+			return true
+		}
+	})
+
+	function toForm(e){
 		let n = document.getElementById('n').value
 		let c = 0
 		let error = document.getElementById('error_popup')
@@ -70,8 +83,32 @@ document.addEventListener('DOMContentLoaded', () =>{
 					},
 				}
 
-				let intR = interR[s][random]
-				// let fAnswer = getAnswer(l,intR,N,x)
+				let R = interR[s][random]
+				// function getAnswer(l,R,N,x,s,random){
+				// 	if(l == 3){
+				// 		while(R >= x){
+				// 			N--
+				// 			R = interR[s][random]
+				// 		}
+				// 		return R
+				// 	}
+				// 	if(l == 2){
+				// 		while(R <= x){
+				// 			N++
+				// 			R = interR[s][random]
+				// 		}
+				// 		return N
+				// 	}
+				// 	if(l == 1){
+				// 		while(R <= x){
+				// 			N++
+				// 			R = interR[s][random]
+				// 		}
+				// 		return R
+				// 	}
+				// }
+				// let fAnswer = getAnswer(l,R,N,x,s,random)
+				// console.log(fAnswer)
 
 
 				c++
@@ -80,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 					<div class "col">
 						<div class="card-panel">
 							<span class="blue-text text-darken-2">
-								№${c}. ${text} </br> Ответ: <div class="answer">${intR}</div>
+								№${c}. ${text} </br> Ответ: <div class="answer">${R}</div>
 							</span>
 						</div>
 					</div>
@@ -121,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 			kolz.style.display = "none"
 			example.style.display = "none"
 		}
-	})
+	}
 	
 	function generate(task,condition) {
 		return `<p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p> 
