@@ -5,8 +5,28 @@ document.addEventListener('DOMContentLoaded', () =>{
 	let hintbn = document.getElementById('hintbtn')
 	let error = document.getElementById('error_popup')
 	let isOpen = false
+	let interR = {
+		1: {
+			1: getRbyTwoLastBits,
+			2: getRbyTwoLastBits,
+			3: getRbyTwoLastBits,
+			4: getRbyTwoLastBits,
+		},
+		2:{
+			1: getRbyDuplAndParity,
+			2: getRbyParity,
+			3: getRbyParityandDupl,
+			4: getRbyParity,
+		},
+		3:{
+			1: getRbyDuplAndParity,
+			2: getRbyParity,
+			3: getRbyParity,
+			4: getRbyDuplAndParity,
+		},
+	}
 	
-	hintbn.addEventListener('click', function() {
+	hintbn.addEventListener('click', ()=> {
 		let hint = document.getElementById('hint')
 
 		if(!isOpen){
@@ -40,14 +60,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 			error.style.display = "inline"
 		}else{
 			cont.innerHTML = ''
-			cont.innerHTML += 
-			`<div id = "addbtn">
-				<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="hintbtn">
-					Ввести ещё раз
-				</button>
-			</div>`
+			
 
-			while (n != 0){
+			while (n){
 				let s = pickPunkts()
 				let l = pickConditonNumber()
 				let x = getX()
@@ -62,27 +77,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 				}
 				let N = Math.floor(getN[s])
 				let params = { N, random, x, l, s }
-				let interR = {
-					1: {
-						1: getRbyTwoLastBits,
-						2: getRbyTwoLastBits,
-						3: getRbyTwoLastBits,
-						4: getRbyTwoLastBits,
-					},
-					2:{
-						1: getRbyDuplAndParity,
-						2: getRbyParity,
-						3: getRbyParityandDupl,
-						4: getRbyParity,
-					},
-					3:{
-						1: getRbyDuplAndParity,
-						2: getRbyParity,
-						3: getRbyParity,
-						4: getRbyDuplAndParity,
-					},
-				}
-
 
 				let R = interR[s][random](params)
 
@@ -101,12 +95,18 @@ document.addEventListener('DOMContentLoaded', () =>{
 			}
 			cont.innerHTML += 
 			`<div id = "answbtn">
-				<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="hintbtn">
+				<button class="waves-effect waves-teal btn-flat" type="submit" name="action">
 					Oтветы
 				</button>
 			</div>` +
 
-			`<a href="#" title="Вернуться к началу" class="topbutton">Наверх</a>`
+			`<div id = "addbtn">
+				<button class="waves-effect waves-teal btn-flat" type="submit" name="action">
+					Ввести ещё раз
+				</button>
+			</div>` +
+
+			`<a href="#" title="Вернуться к началу" class="topbutton">НАВЕРХ</a>`
 
 			let answbtn = document.getElementById("answbtn")
 			let addbtn = document.getElementById("addbtn")
