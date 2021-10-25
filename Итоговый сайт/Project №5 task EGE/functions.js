@@ -78,6 +78,7 @@ function getRbyParity({s, N, x, l}){
 		return R
 	}
 }
+
 function getRbyDuplAndParity({s, N, x, l}){
 	let R = N
 	let S = s

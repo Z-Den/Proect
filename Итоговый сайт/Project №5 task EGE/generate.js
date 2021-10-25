@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 			cont.innerHTML += 
 			`<div id = "answbtn">
 				<button class="waves-effect waves-teal btn-flat" type="submit" name="action">
-					Oтветы
+					посмотреть ответы
 				</button>
 			</div>` +
 
