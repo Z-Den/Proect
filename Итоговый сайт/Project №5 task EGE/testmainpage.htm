@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				<div id="kolz" class="col s6">
-					<h2>Введите количество задач:</h2><input type="number" name="kolz" id="n">
+					<h2>Введите количество задач:</h2><input type="number" name="kolz" id="n" onkeyup="this.value=this.value.replace(/[^0-9]+/g,''); isright(this);">
 					<button class="waves-effect waves-teal btn-flat" type="submit" name="action" id="qstbtn">
 						Сгенерировать <i class="material-icons right">touch_app</i>
 	  				</button>

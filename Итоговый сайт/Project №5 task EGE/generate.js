@@ -5,26 +5,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 	let hintbn = document.getElementById('hintbtn')
 	let error = document.getElementById('error_popup')
 	let isOpen = false
-	let interR = {
-		1: {
-			1: getRbyTwoLastBits,
-			2: getRbyTwoLastBits,
-			3: getRbyTwoLastBits,
-			4: getRbyTwoLastBits,
-		},
-		2:{
-			1: getRbyDuplAndParity,
-			2: getRbyParity,
-			3: getRbyParityandDupl,
-			4: getRbyParity,
-		},
-		3:{
-			1: getRbyDuplAndParity,
-			2: getRbyParity,
-			3: getRbyParity,
-			4: getRbyDuplAndParity,
-		},
-	}
+	
 	
 	hintbn.addEventListener('click', ()=> {
 		let hint = document.getElementById('hint')
@@ -40,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 		isOpen = !isOpen
 	})
+	
 	document.addEventListener('keypress',()=>{
 		if(event.which || event.keyCode) {
 			if ((event.which == 13) || (event.keyCode == 13)) {
@@ -55,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 	quest.addEventListener('click',()=>{
 		let n = document.getElementById('n').value
 		let c = 0
-		// error = document.getElementById('error_popup')
+		error = document.getElementById('error_popup')
 		if(n <= 0){
 			error.style.display = "inline"
 		}else{
@@ -75,11 +57,30 @@ document.addEventListener('DOMContentLoaded', () =>{
 					2: toN(x, 2),
 					3: toN(x, 3),
 				}
+				
 				let N = Math.floor(getN[s])
-				let params = { N, random, x, l, s }
-
-				let R = interR[s][random](params)
-
+				let interR = {
+					1: {
+						1: spec(N, random),
+						2: spec(N, random),
+						3: spec(N, random),
+						4: spec(N, random),
+					},
+					2:{
+						1: duplicateXparity(N, s),
+						2: Parity(N, s),
+						3: parityXduplicate(N, s),
+						4: Parity(N, s),
+					},
+					3:{
+						1: duplicateXparity(N, s),
+						2: Parity(N, s),
+						3: Parity(N, s),
+						4: duplicateXparity(N, s),
+					},
+				}
+				let params = {N, random, s}
+				let R = interR[s][random]
 				c++
 				cont.innerHTML +=
 				`<div class = "row">
@@ -206,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 	}
 
 	function getX() {
-		let x = Math.floor((Math.random() * 1000) % (165 - 85) + 85)//x [165;85] 80 in total
+		let x = Math.floor((Math.random() * 1000) % (165 - 85) + 85)//x ∈ [85;165] 80 in total
 		return x
 	}
 
@@ -220,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 		return s	
 	}
 	function getRandomItem() {
-		let rand = Math.floor((Math.random() * 10) % (5 - 1) + 1)
+		let rand = Math.floor((Math.random() * 10) % (4 - 1) + 1)
 		return rand
 	}
 })
